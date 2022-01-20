@@ -25,16 +25,6 @@ public class Receiver
     IAsyncCollector<ServiceBusMessage> xCardViewClient)
         
     {
-        var bytes = thisMessage.Body.ToArray();
-        var scorecardId = 260964494;
-        /*BlobServiceClient client = new BlobServiceClient(
-                    new Uri($"https://testhipaa543.blob.core.windows.net"),
-                    new DefaultAzureCredential());
-        BlobContainerClient container = client.GetBlobContainerClient("whateverItdoesntMatter");
-        */
-        //var blockBlob = container.GetBlobClient(filePath);
-        var data = "just a string";
-        //await blockBlob.UploadAsync(data).ConfigureAwait(false);
         var xCardPreloadScorecardMessage = new ServiceBusMessage(thisMessage);
         await xCardViewClient.AddAsync(xCardPreloadScorecardMessage);
     }
