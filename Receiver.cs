@@ -21,14 +21,5 @@ public class Receiver
         [ServiceBusTrigger(topicName: "xcardView", subscriptionName: "ViewCall", Connection = "ServiceBus")] ServiceBusReceivedMessage thisMessage)
     {
         var bytes = thisMessage.Body.ToArray();
-        var scorecardId = 260964494;
-        /*BlobServiceClient client = new BlobServiceClient(
-                    new Uri($"https://testhipaa543.blob.core.windows.net"),
-                    new DefaultAzureCredential());
-        BlobContainerClient container = client.GetBlobContainerClient("whateverItdoesntMatter");
-        */
-        //var blockBlob = container.GetBlobClient(filePath);
-        var data = "just a string";
-        //await blockBlob.UploadAsync(data).ConfigureAwait(false);
     }
 }
