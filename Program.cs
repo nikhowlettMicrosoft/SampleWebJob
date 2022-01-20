@@ -23,11 +23,14 @@ namespace WebJobTest
         {
             var builder = new HostBuilder();
             var settingsAsCollection = ConfigurationManager.AppSettings;
-            var storageConnection = ConfigurationManager.ConnectionStrings["AzureWebJobsDashboard"].ConnectionString;
             var settings = settingsAsCollection.AllKeys.ToDictionary(k => k, k => settingsAsCollection[k]);
             settings["ServiceBus:fullyQualifiedNamespace"] = settings["Microsoft.ServiceBus.ConnectionString"];
+
+
+            var storageConnection = ConfigurationManager.ConnectionStrings["AzureWebJobsDashboard"].ConnectionString;
             settings["AzureWebJobsDashboard"] = storageConnection;
             settings["AzureWebJobsStorage"] = storageConnection;
+
             builder.ConfigureAppConfiguration(x =>
             x.Add(new MemoryConfigurationSource()
             {
@@ -59,6 +62,7 @@ namespace WebJobTest
 
             System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls12;
             var host = builder.Build();
+
             using (host)
             {
                 host.Run();
